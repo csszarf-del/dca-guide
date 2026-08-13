@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Annual Notice Tracker — White Works LLC</title>
+<meta name="description" content="Track the January lead paint and window guard annual notice cycle. Know which units responded, which need inspection, and which need a letter to DOHMH.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}
+.topbar-in{max-width:900px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:'Fraunces',serif;font-weight:900;font-size:21px}
+.logo span{font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.3em;color:var(--gold-2);font-weight:700}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none}
+
+.back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-decoration:none;
+  font-family:'Archivo',sans-serif;font-weight:600}
+.back:hover{color:var(--gold)}
+
+header{padding:24px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold)}
+h1{color:var(--green);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.05;
+  letter-spacing:-.015em;margin:12px 0 14px}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:16.5px;color:#4c493f;max-width:62ch}
+
+/* timeline */
+.tl{margin:34px 0 0;position:relative;padding-left:32px}
+.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(var(--gold),var(--line))}
+.tl-item{position:relative;padding-bottom:26px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-29px;top:6px;width:15px;height:15px;
+  border-radius:50%;background:var(--cream);border:3px solid var(--gold)}
+.tl-item .when{font-family:'Archivo',sans-serif;font-size:11px;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+.tl-item h3{color:var(--green);font-weight:700;font-size:19px}
+.tl-item p{font-size:15px;color:#4c493f;max-width:60ch;margin-top:4px}
+
+section{padding:34px 0}
+h2{color:var(--green);font-weight:900;font-size:clamp(26px,3.8vw,34px);letter-spacing:-.015em}
+.sub{color:#4c493f;font-size:15.5px;margin:8px 0 20px;max-width:62ch}
+
+.setup{background:rgba(176,141,46,.1);border:1px solid rgba(176,141,46,.35);border-radius:10px;
+  padding:18px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.fld{font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--green);display:flex;flex-direction:column;gap:6px;flex:1;min-width:170px}
+.fld input,.fld select{font-family:'Fraunces',serif;font-size:15px;font-weight:400;background:#fff;
+  color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.btn{font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;background:var(--gold);
+  color:var(--green);border:none;border-radius:8px;padding:13px 20px;cursor:pointer;
+  text-decoration:none;display:inline-block;letter-spacing:.03em}
+.btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--line)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 6px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:15px}
+.stat .n{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;color:var(--green);line-height:1}
+.stat .l{font-family:'Archivo',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-top:5px}
+.stat.flag .n{color:var(--rust)}
+
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px}
+th{font-family:'Archivo',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green);text-align:left;padding:10px 8px;
+  border-bottom:2px solid var(--gold)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+td input[type=text]{font-family:'Fraunces',serif;font-size:14.5px;background:transparent;
+  border:none;border-bottom:1px dashed var(--line);color:var(--ink);width:100%;padding:3px 2px}
+td input[type=text]:focus{outline:none;border-bottom-color:var(--gold)}
+td select{font-family:'Archivo',sans-serif;font-size:13px;background:#fff;color:var(--ink);
+  border:1px solid var(--line);border-radius:5px;padding:6px 8px;width:100%}
+tr.flag td{background:rgba(139,58,46,.06)}
+.rm{background:none;border:none;color:var(--muted);cursor:pointer;font-size:17px;line-height:1}
+.rm:hover{color:var(--rust)}
+
+.warn{background:rgba(139,58,46,.08);border-left:3px solid var(--rust);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+.warn b{color:var(--rust)}
+.tip{background:rgba(176,141,46,.1);border-left:3px solid var(--gold);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+
+.doc{background:#fff;color:#111;border-radius:10px;padding:30px;margin-top:18px;
+  font-size:14px;line-height:1.55;display:none;border:1px solid var(--line)}
+.doc.on{display:block}
+.doc h4{margin:0 0 3px;font-size:16px;text-transform:uppercase;letter-spacing:.04em}
+.doc .line{border-bottom:1px solid #444;display:inline-block;min-width:180px}
+.doc ul{margin:10px 0;padding-left:20px}
+
+.strip{margin:36px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:26px}
+.strip h2{color:var(--cream);font-size:25px;margin:0 0 8px}
+.strip p{font-size:15px;margin:0 0 14px;color:rgba(242,237,226,.85)}
+.strip .btn.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(242,237,226,.45)}
+
+footer{padding:40px 0;color:var(--muted);font-size:13px;font-family:'Archivo',sans-serif;
+  border-top:1px solid var(--line);margin-top:38px}
+footer b{color:var(--green)}
+
+@media print{
+  .topbar,.back,header,.setup,.tl,.strip,footer,.btn,.warn,.tip,.stats{display:none!important}
+  body{background:#fff}
+  section{padding:0}
+  .doc{border:none;padding:0;display:block}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<a class="back" href="ny.html">← New York guides</a>
+
+<header>
+  <div class="kicker">Free tool · New York City</div>
+  <h1>The January notice cycle, <em>tracked properly</em></h1>
+  <p class="lede">Lead paint and window guard notices go out the first two weeks of January. What
+  trips owners up isn't sending them — it's what happens to the ones that never come back. Miss
+  that step and you're liable, whether or not a child lives there.</p>
+
+  <div class="tl">
+    <div class="tl-item">
+      <span class="when">January 1–15</span>
+      <h3>Send the annual notice to every unit</h3>
+      <p>Multiple dwellings with 3+ units. First-class mail, hand delivery, or enclosed with the
+      January rent bill if that bill goes out between December 15 and January 16. Lead and window
+      guard notices can go on one combined form. Where lead applies, provide duplicates in English
+      and Spanish so the tenant keeps one and returns one.</p>
+    </div>
+    <div class="tl-item">
+      <span class="when">By February 15</span>
+      <h3>Tenants return the form</h3>
+      <p>It asks whether a child lives in the unit. Two different ages matter: 10 or younger
+      triggers window guards, 5 or younger triggers lead paint inspection and safe work practices.</p>
+    </div>
+    <div class="tl-item">
+      <span class="when">February 16 – March 1</span>
+      <h3>Inspect every unit that didn't respond</h3>
+      <p>No response means you go look. Document every attempt to reach the tenant.</p>
+    </div>
+    <div class="tl-item">
+      <span class="when">By March 1</span>
+      <h3>Write to the Health Department for units you couldn't enter</h3>
+      <p>If a tenant refused access or you simply couldn't get in, describe the situation in a
+      letter to DOHMH. That letter is what protects you.</p>
+    </div>
+    <div class="tl-item">
+      <span class="when">Keep for 10 years</span>
+      <h3>File every returned form</h3>
+      <p>Ten-year retention. Lead compliance is also certified as part of your annual property
+      registration.</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Track your units</h2>
+  <p class="sub">Add each unit, mark what came back, and the tool flags who still needs an
+  inspection or a letter. Everything stays in your browser — nothing is saved or sent.</p>
+
+  <div class="setup">
+    <label class="fld">Building address
+      <input type="text" id="bldg" placeholder="1234 Example Ave, Brooklyn">
+    </label>
+    <label class="fld" style="max-width:150px">How many units
+      <input type="number" id="count" min="1" max="200" value="6">
+    </label>
+    <button class="btn" onclick="buildRows()">Build the list</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n" id="s_total">0</div><div class="l">Units</div></div>
+    <div class="stat"><div class="n" id="s_ret">0</div><div class="l">Returned</div></div>
+    <div class="stat flag"><div class="n" id="s_insp">0</div><div class="l">Need inspection</div></div>
+    <div class="stat flag"><div class="n" id="s_dohmh">0</div><div class="l">Need DOHMH letter</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th style="width:80px">Unit</th><th style="width:120px">Notice sent</th>
+          <th>Form returned?</th><th>Child in unit</th><th style="width:34px"></th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div style="margin-top:16px">
+    <button class="btn ghost" onclick="addRow('')">+ Add a unit</button>
+    <button class="btn" onclick="window.print()">🖨️ Print the DOHMH letter</button>
+  </div>
+
+  <div class="warn"><b>The part people miss.</b> A unit that never returns the form is not
+  resolved. You must inspect it, and if you can't get in, you must write to the Health Department
+  by March 1. Skipping that step leaves you exposed if a child is later injured — and it's the
+  first thing asked about after a window fall.</div>
+
+  <div class="tip">Window guards are required in any unit where a child 10 or younger lives,
+  <b>and on tenant request whether or not a child lives there</b>. A tenant can ask any time of
+  year, not just in January.</div>
+
+  <div class="doc" id="letter">
+    <h4>Notice to the Department of Health and Mental Hygiene</h4>
+    <p style="color:#555;font-size:12.5px">Window Falls Prevention Program — units not inspected by March 1</p>
+    <p style="margin-top:18px">Date: <span class="line" style="min-width:130px">&nbsp;</span></p>
+    <p style="margin-top:14px"><b>Building:</b> <span id="l_bldg" class="line">&nbsp;</span></p>
+    <p style="margin-top:14px">The owner sent the required annual notice to all units in the
+    building between January 1 and January 15. The following units did not return the completed
+    form, and the owner was unable to gain access to inspect the unit by March 1 despite repeated
+    attempts:</p>
+    <ul id="l_units"></ul>
+    <p>Attempts to contact these occupants included written notice and repeated efforts to arrange
+    a mutually suitable time for inspection. The owner remains willing to inspect and to install or
+    repair window guards upon access being granted.</p>
+    <p style="margin-top:24px">
+      Owner / managing agent: <span class="line" style="min-width:220px">&nbsp;</span><br><br>
+      Signature: <span class="line" style="min-width:220px">&nbsp;</span>
+      &nbsp;&nbsp; Date: <span class="line" style="min-width:110px">&nbsp;</span>
+    </p>
+    <p style="font-size:12px;color:#666;margin-top:20px">Send to the NYC Department of Health and
+    Mental Hygiene, Window Falls Prevention Program. Confirm the current mailing address with 311
+    or nyc.gov/health before sending. Keep a copy with your annual notice records.</p>
+  </div>
+</section>
+
+<div class="strip">
+  <h2>Window guards, in stock</h2>
+  <p>Code-compliant adjustable steel window guards, delivered across NYC. If your January responses
+  come back with children in units that don't have guards, we can have them to you fast.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20need%20window%20guards%20-%20annual%20notice%20responses%20came%20back">Get a quote on WhatsApp</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=Window%20guards%20quote">Email us</a>
+</div>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY<br>
+  orderswhiteworks@outlook.com · (347) 645-8900</p>
+  <p style="max-width:62ch;margin-top:14px">Informational only, not legal advice. The official
+  annual notice form must be the version approved by the NYC Department of Health and Mental
+  Hygiene — download it from nyc.gov or call 311. This tool helps you track responses; it does not
+  replace the required form.</p>
+</footer>
+
+</div>
+
+<script>
+function el(id){ return document.getElementById(id); }
+
+function addRow(label){
+  const tb = el('rows');
+  const tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input type="text" class="u" value="' + (label||'') + '" placeholder="1A"></td>' +
+    '<td><select class="sent"><option>No</option><option selected>Yes</option></select></td>' +
+    '<td><select class="ret">' +
+      '<option value="no" selected>Not returned</option>' +
+      '<option value="yes">Returned</option>' +
+      '<option value="norefuse">No access / refused</option>' +
+    '</select></td>' +
+    '<td><select class="kid">' +
+      '<option value="none" selected>No child</option>' +
+      '<option value="u10">Child 10 or younger</option>' +
+      '<option value="u5">Child 5 or younger</option>' +
+      '<option value="unk">Unknown</option>' +
+    '</select></td>' +
+    '<td><button class="rm" onclick="this.closest(\'tr\').remove();recalc()">✕</button></td>';
+  tb.appendChild(tr);
+  tr.querySelectorAll('select,input').forEach(function(x){
+    x.addEventListener('change', recalc);
+    x.addEventListener('input', recalc);
+  });
+  recalc();
+}
+
+function buildRows(){
+  const n = Math.min(Math.max(parseInt(el('count').value,10)||1,1),200);
+  el('rows').innerHTML = '';
+  for(let i=1;i<=n;i++) addRow(String(i));
+  recalc();
+}
+
+function recalc(){
+  const rows = Array.from(document.querySelectorAll('#rows tr'));
+  let ret=0, insp=0, dohmh=0;
+  const stuck=[];
+
+  rows.forEach(function(tr){
+    const r = tr.querySelector('.ret').value;
+    const kid = tr.querySelector('.kid').value;
+    const unit = tr.querySelector('.u').value.trim() || '—';
+    tr.classList.remove('flag');
+
+    if(r === 'yes'){ ret++; }
+    if(r === 'no'){ insp++; tr.classList.add('flag'); }
+    if(r === 'norefuse'){ dohmh++; stuck.push(unit); tr.classList.add('flag'); }
+
+    // a returned form reporting a child but no guards is also worth flagging visually
+    if(r === 'yes' && (kid === 'u10' || kid === 'u5')) tr.classList.add('flag');
+  });
+
+  el('s_total').textContent  = rows.length;
+  el('s_ret').textContent    = ret;
+  el('s_insp').textContent   = insp;
+  el('s_dohmh').textContent  = dohmh;
+
+  el('l_bldg').textContent = el('bldg').value.trim() || '\u00A0';
+  el('l_units').innerHTML  = stuck.length
+    ? stuck.map(function(u){ return '<li>Unit ' + u + '</li>'; }).join('')
+    : '<li style="color:#888">(no units currently marked as no access)</li>';
+  el('letter').classList.toggle('on', stuck.length > 0);
+}
+
+el('bldg').addEventListener('input', recalc);
+buildRows();
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Required Lobby Signage Checklist — White Works LLC</title>
+<meta name="description" content="Every sign a NYC multiple dwelling must post, with the code section for each. Walk your lobby, check what's up, print what's missing.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}
+.topbar-in{max-width:900px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:'Fraunces',serif;font-weight:900;font-size:21px}
+.logo span{font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.3em;color:var(--gold-2);font-weight:700}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none}
+
+.back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-decoration:none;
+  font-family:'Archivo',sans-serif;font-weight:600}
+.back:hover{color:var(--gold)}
+
+header{padding:24px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold)}
+h1{color:var(--green);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.05;
+  letter-spacing:-.015em;margin:12px 0 14px}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:16.5px;color:#4c493f;max-width:62ch}
+
+.walk-bar{margin:26px 0 6px;background:rgba(176,141,46,.1);border:1px solid rgba(176,141,46,.35);
+  border-radius:10px;padding:18px 20px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.walk-label{font-family:'Archivo',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.03em;
+  color:var(--green);display:flex;flex-direction:column;gap:6px;flex:1;min-width:230px}
+.walk-label input{font-family:'Fraunces',serif;font-size:15px;background:#fff;color:var(--ink);
+  border:1px solid var(--line);border-radius:6px;padding:11px 12px}
+.btn{font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;background:var(--gold);
+  color:var(--green);border:none;border-radius:8px;padding:13px 20px;cursor:pointer;
+  text-decoration:none;display:inline-block;letter-spacing:.03em}
+.note{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:12px;max-width:64ch}
+
+section{padding:34px 0}
+.grp{margin-bottom:30px}
+.grp h3{font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--green);padding-bottom:9px;
+  border-bottom:2px solid var(--gold);margin-bottom:12px}
+.chk{display:flex;gap:13px;align-items:flex-start;background:var(--paper);
+  border:1px solid var(--line);border-radius:9px;padding:14px 15px;cursor:pointer;
+  margin-bottom:8px;transition:background .2s,border-color .2s;user-select:none}
+.chk:hover{border-color:var(--gold)}
+.chk .box{flex:none;width:22px;height:22px;border:2px solid var(--gold);border-radius:5px;
+  margin-top:2px;position:relative;background:#fff;transition:background .2s}
+.chk .box::after{content:"";position:absolute;left:5.5px;top:1px;width:6px;height:11px;
+  border:solid var(--green);border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);transition:transform .16s}
+.chk.done{background:rgba(176,141,46,.14);border-color:var(--gold)}
+.chk.done .box{background:var(--gold-2)}
+.chk.done .box::after{transform:rotate(45deg) scale(1)}
+.chk .t{font-size:15px;line-height:1.45}
+.chk .t b{color:var(--green)}
+.chk .t small{display:block;color:var(--muted);font-size:12.5px;margin-top:3px;
+  font-family:'Archivo',sans-serif}
+.chk .code{display:inline-block;font-family:'Archivo',sans-serif;font-size:9px;font-weight:800;
+  letter-spacing:.1em;color:var(--green);background:var(--gold-2);padding:2px 7px;
+  border-radius:3px;margin-left:6px;vertical-align:middle}
+
+.warn{background:rgba(139,58,46,.08);border-left:3px solid var(--rust);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+.warn b{color:var(--rust)}
+
+.strip{margin:36px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:26px}
+.strip h2{color:var(--cream);font-weight:900;font-size:25px;margin:0 0 8px}
+.strip p{font-size:15px;margin:0 0 14px;color:rgba(242,237,226,.85)}
+.strip .btn.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(242,237,226,.45)}
+
+footer{padding:40px 0;color:var(--muted);font-size:13px;font-family:'Archivo',sans-serif;
+  border-top:1px solid var(--line);margin-top:38px}
+footer b{color:var(--green)}
+
+/* print report */
+#printReport{display:none}
+body.print-mode{background:#fff}
+body.print-mode > *:not(#printReport){display:none!important}
+body.print-mode #printReport{display:block!important;background:#fff;color:#1a1a1a;
+  font-family:'Fraunces',Georgia,serif;padding:10px 4px}
+.rp-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;
+  border-bottom:3px solid var(--gold);padding-bottom:12px;margin-bottom:18px}
+.rp-brand{font-family:'Archivo',sans-serif;font-weight:900;font-size:20px;color:var(--green)}
+.rp-brand span{font-size:10px;letter-spacing:.25em;color:var(--gold);margin-left:6px}
+.rp-title{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.06em;
+  color:#555;text-transform:uppercase}
+.rp-meta{display:flex;gap:26px;flex-wrap:wrap;font-size:13px;margin-bottom:22px;
+  font-family:'Archivo',sans-serif;color:#333}
+.rp-meta b{color:var(--green)}
+.rp-section-title{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--rust);margin-bottom:14px;border-bottom:1px solid #ddd;padding-bottom:6px}
+.rp-group{margin-bottom:16px;break-inside:avoid}
+.rp-group h4{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.05em;
+  color:var(--green);text-transform:uppercase;margin-bottom:7px}
+.rp-item{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.45;padding:4px 0}
+.rp-box{flex:none;width:12px;height:12px;border:1.6px solid #444;border-radius:2px;margin-top:3px}
+.rp-code{font-family:'Archivo',sans-serif;font-size:10px;color:#777;margin-left:5px}
+.rp-allclear{font-size:14.5px;color:var(--green-2);font-style:italic}
+.rp-footer{margin-top:26px;padding-top:14px;border-top:1px solid #ccc;
+  font-family:'Archivo',sans-serif;font-size:11.5px;color:#444;line-height:1.7}
+@media print{@page{margin:.6in}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<a class="back" href="ny.html">← New York guides</a>
+
+<header>
+  <div class="kicker">Free checklist · New York City</div>
+  <h1>Every sign your lobby is <em>supposed to have</em></h1>
+  <p class="lede">A housing inspector coming for any reason will look at your signage. Missing
+  notices are the easiest violation to write and the easiest to avoid. Walk the lobby, check what's
+  already posted, and print the list of what isn't.</p>
+
+  <div class="walk-bar">
+    <label class="walk-label">Building address
+      <input type="text" id="addr" placeholder="Your address here">
+    </label>
+    <button class="btn" type="button" onclick="printReport()">🖨️ Print what's missing</button>
+  </div>
+  <p class="note">Checked means it's already posted and legible. Leave unchecked anything missing,
+  faded, or out of date — that's what prints.</p>
+</header>
+
+<section>
+
+<div class="grp">
+  <h3>Building identity &amp; contacts</h3>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>HPD registration number sign</b> <span class="code">HMC § 27-2107</span>
+    <small>Entrance hall. Must also show the building street address and superintendent, janitor or housekeeper info.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Superintendent / managing agent notice</b> <span class="code">HMC § 27-2053</span>
+    <small>Entrance lobby. Name, address and a working telephone number, in legible lettering.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Street address visible from the sidewalk</b>
+    <small>Clearly displayed at the front entrance.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Inspection visits frame</b> <span class="code">MDL § 329</span>
+    <small>The 6x9 keyhole frame for the inspection record card.</small></div></div>
+</div>
+
+<div class="grp">
+  <h3>Life safety notices</h3>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Smoke detecting devices notice</b> <span class="code">28 RCNY § 12-01</span>
+    <small>Class A multiple dwellings. Posted at or near the mailboxes, on an HPD-approved form.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Carbon monoxide detecting device notice</b> <span class="code">HMC § 27-2046.1</span>
+    <small>Common area, HPD-approved form.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Gas leak procedures notice</b> <span class="code">Local Law 153 of 2016</span>
+    <small>All residential multiple dwellings. Must follow HPD's graphical spec.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Emergency preparedness notice</b>
+    <small>Buildings with 3+ apartments. Inside every apartment entrance door AND in the lobby.
+    Two versions exist — one for non-combustible fireproof buildings, one for combustible
+    non-fireproof. Posting the wrong one still counts as missing.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>"Shut the Door" fire safety notice</b> <span class="code">Local Law 115</span>
+    <small>Conspicuous locations. Must be replaced promptly when damaged or removed.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Boiler room key notices — two of them</b>
+    <small>One in the lobby, one on the boiler room entrance door. Name and location of the person
+    holding the keys.</small></div></div>
+</div>
+
+<div class="warn"><b>The combined notice trap.</b> Since October 2017 you may post a single combined
+sign covering gas leak procedures, smoke detectors and CO alarms. Plenty of non-compliant "combined"
+signs are sold in NYC, and owners have been fined for posting signs that look right but don't meet
+HPD's specification. If you're using a combined sign, verify it against HPD's published form before
+trusting it.</div>
+
+<div class="grp">
+  <h3>Tenant information</h3>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Housing Information Guide notice — "ABCs of Housing"</b> <span class="code">Admin Code § 26-1103</span>
+    <small>Conspicuous spot within view of where mail is delivered.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Garbage collection schedule</b>
+    <small>Required in the lobby where there's no 24-hour dumbwaiter service. Must be behind
+    plastic or in a frame so it can't be tampered with.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Bedbug annual filing receipt</b>
+    <small>Post it prominently, or hand it to every tenant at new lease and renewal. The
+    "Stop Bed Bugs Safely" brochure must also be posted or distributed.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Rent stabilized units notice</b>
+    <small>Only if the building has one or more rent-stabilized units. English and Spanish, common
+    area, must include the building address and HPD property registration number.</small></div></div>
+</div>
+
+<div class="grp">
+  <h3>Situational — only when it applies</h3>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Safe Construction Bill of Rights</b>
+    <small>Posted or distributed when applying for a construction permit that isn't minor repairs,
+    when notifying DOB of emergency work, or when applying for a temporary certificate of occupancy.</small></div></div>
+  <div class="chk" onclick="this.classList.toggle('done')"><div class="box"></div><div class="t">
+    <b>Tenant Protection Plan</b>
+    <small>Required by DOB when units stay occupied during construction.</small></div></div>
+</div>
+
+<div class="warn">Notices must be large enough to be readily seen in public areas. A sign that's
+technically present but faded, covered, or hung behind a door is treated the same as a missing one.</div>
+
+<div class="strip">
+  <h2>We supply what the signs are about</h2>
+  <p>Smoke and CO alarms, natural gas alarms, self-closing hardware, window guards, chains and
+  peepholes — delivered across NYC. Quoted per building.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20used%20your%20NYC%20signage%20checklist%20and%20want%20a%20quote">Get a quote on WhatsApp</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=NYC%20building%20quote">Email us</a>
+</div>
+
+</section>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY<br>
+  orderswhiteworks@outlook.com · (347) 645-8900</p>
+  <p style="max-width:62ch;margin-top:14px">Informational only, not legal advice. Signage
+  requirements are set by HPD, FDNY, DOB and DOHMH and change over time. Confirm current
+  requirements and approved forms with the issuing agency.</p>
+</footer>
+
+</div>
+
+<div id="printReport"></div>
+
+<script>
+function labelOf(el){
+  const t = el.querySelector('.t');
+  const b = t.querySelector('b');
+  const code = t.querySelector('.code');
+  return {
+    name: b ? b.textContent.trim() : t.textContent.trim(),
+    code: code ? code.textContent.trim() : ''
+  };
+}
+
+function printReport(){
+  const address = (document.getElementById('addr').value.trim()) || '(address not entered)';
+  const dateStr = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  let total = 0, missing = 0, body = '';
+
+  document.querySelectorAll('.grp').forEach(function(g){
+    const head = g.querySelector('h3').textContent.trim();
+    let rows = '';
+    g.querySelectorAll('.chk').forEach(function(c){
+      total++;
+      if(!c.classList.contains('done')){
+        missing++;
+        const l = labelOf(c);
+        rows += '<div class="rp-item"><span class="rp-box"></span>' + l.name +
+                (l.code ? '<span class="rp-code">' + l.code + '</span>' : '') + '</div>';
+      }
+    });
+    if(rows) body += '<div class="rp-group"><h4>' + head + '</h4>' + rows + '</div>';
+  });
+
+  document.getElementById('printReport').innerHTML =
+    '<div class="rp-header">' +
+      '<div class="rp-brand">White Works <span>L\u00b7L\u00b7C</span></div>' +
+      '<div class="rp-title">NYC Signage \u2014 Missing Items</div>' +
+    '</div>' +
+    '<div class="rp-meta">' +
+      '<div><b>Property:</b> ' + address + '</div>' +
+      '<div><b>Date:</b> ' + dateStr + '</div>' +
+      '<div><b>Status:</b> ' + (total - missing) + ' of ' + total + ' posted</div>' +
+    '</div>' +
+    (missing === 0
+      ? '<p class="rp-allclear">Every required notice is posted. Nothing flagged.</p>'
+      : '<div class="rp-section-title">Signs to post</div>' + body) +
+    '<div class="rp-footer"><b>White Works LLC</b> \u2014 Building Safety &amp; Security ' +
+    '&nbsp;|&nbsp; (347) 645-8900 &nbsp;|&nbsp; orderswhiteworks@outlook.com<br>' +
+    'Signage requirements confirmed with the issuing agency before ordering.</div>';
+
+  document.body.classList.add('print-mode');
+  window.print();
+}
+window.addEventListener('afterprint', function(){
+  document.body.classList.remove('print-mode');
+});
+</script>
+</body>
+</html>
