@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Disclosure Form Builder — White Works LLC</title>
+<meta name="description" content="Build the federal lead-based paint disclosure required for every pre-1978 rental. Accepted by Newark Housing Authority, NYCHA, HPD and every PHA.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:60}
+.topbar-in{max-width:940px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px;flex:none}
+.logo b{font-family:'Fraunces',serif;font-weight:900;font-size:21px}
+.logo span{font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.3em;color:var(--gold-2);font-weight:700}
+.navsel{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;background:var(--green-2);
+  color:var(--cream);border:1px solid rgba(217,190,122,.45);border-radius:6px;padding:8px 11px;
+  cursor:pointer;max-width:230px}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none;flex:none}
+@media(max-width:620px){.topbar a.wa{display:none}}
+
+header{padding:28px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold)}
+h1{color:var(--green);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.05;
+  letter-spacing:-.015em;margin:12px 0 14px}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:16.5px;color:#4c493f;max-width:62ch}
+
+section{padding:32px 0}
+h2{color:var(--green);font-weight:900;font-size:clamp(25px,3.6vw,32px);letter-spacing:-.015em}
+.sub{color:#4c493f;font-size:15.5px;margin:8px 0 20px;max-width:64ch}
+
+.form{background:rgba(176,141,46,.1);border:1px solid rgba(176,141,46,.35);border-radius:12px;padding:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.fld{font-family:'Archivo',sans-serif;font-size:11px;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--green);display:flex;flex-direction:column;gap:5px}
+.fld input,.fld select,.fld textarea{font-family:'Fraunces',serif;font-size:15px;font-weight:400;
+  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--gold)}
+.fld.full{grid-column:1/-1}
+.fld textarea{min-height:70px;resize:vertical}
+.hint{font-family:'Fraunces',serif;font-size:12.5px;font-weight:400;letter-spacing:0;
+  text-transform:none;color:var(--muted);font-style:italic}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;background:var(--gold);
+  color:var(--green);border:none;border-radius:8px;padding:13px 20px;cursor:pointer;
+  text-decoration:none;display:inline-block;letter-spacing:.03em}
+.btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--line)}
+
+.doc{background:#fff;color:#111;border:1px solid var(--line);border-radius:10px;
+  padding:36px 34px;margin-top:20px;font-size:13.5px;line-height:1.5}
+.doc h3{font-family:'Archivo',sans-serif;font-weight:900;font-size:16px;text-transform:uppercase;
+  letter-spacing:.03em;margin-bottom:3px;text-align:center}
+.doc .lawline{text-align:center;font-size:11.5px;color:#666;margin-bottom:20px;
+  font-family:'Archivo',sans-serif}
+.doc h4{font-family:'Archivo',sans-serif;font-weight:800;font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:#111;margin:18px 0 7px;border-bottom:1px solid #ccc;padding-bottom:4px}
+.doc p{margin:7px 0}
+.doc .warnbox{border:1.5px solid #111;padding:12px 14px;margin:14px 0;font-size:12.5px;line-height:1.5}
+.doc .fill{border-bottom:1px solid #444;display:inline-block;min-width:150px;font-weight:600}
+.doc .fillbig{border-bottom:1px solid #444;display:block;min-height:19px;font-weight:600;margin-top:2px}
+.doc .chk{display:flex;gap:8px;align-items:flex-start;margin:5px 0}
+.doc .bx{flex:none;width:12px;height:12px;border:1.4px solid #111;margin-top:3px;position:relative}
+.doc .bx.on::after{content:"\2713";position:absolute;left:0;top:-5px;font-size:14px;font-weight:700}
+.doc .sigrow{display:flex;gap:22px;flex-wrap:wrap;margin-top:10px}
+.doc .sig{flex:1;min-width:190px}
+.doc .sig .ln{border-bottom:1px solid #444;height:20px;margin-bottom:2px}
+.doc .sig small{font-size:10.5px;color:#555;font-family:'Archivo',sans-serif}
+
+.warn{background:rgba(139,58,46,.08);border-left:3px solid var(--rust);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+.warn b{color:var(--rust)}
+.tip{background:rgba(176,141,46,.1);border-left:3px solid var(--gold);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+.tip a{color:var(--green);font-weight:700;border-bottom:2px solid var(--gold);text-decoration:none}
+
+.strip{margin:36px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:26px}
+.strip h2{color:var(--cream);font-size:25px;margin:0 0 8px}
+.strip p{font-size:15px;margin:0 0 14px;color:rgba(242,237,226,.85)}
+.strip .btn.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(242,237,226,.45)}
+
+footer{padding:40px 0;color:var(--muted);font-size:13px;font-family:'Archivo',sans-serif;
+  border-top:1px solid var(--line);margin-top:38px}
+footer b{color:var(--green)}
+
+@media print{
+  body{background:#fff}
+  body > *:not(.printzone){display:none!important}
+  .printzone{display:block!important}
+  .printzone > *:not(.doc){display:none!important}
+  .doc{border:none;padding:0;margin:0;font-size:12px}
+  @page{margin:.6in}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <select class="navsel" onchange="if(this.value)location.href=this.value">
+      <option value="">Jump to a guide…</option>
+      <optgroup label="New Jersey">
+        <option value="nj.html">All NJ guides</option>
+        <option value="dca-guide.html">DCA Inspection Guide</option>
+        <option value="compliance.html">Compliance Pack</option>
+        <option value="pest-schedule.html">Pest Schedule Builder</option>
+      </optgroup>
+      <optgroup label="New York">
+        <option value="ny.html">All NY guides</option>
+        <option value="ny-notices.html">Lobby Notice Builder</option>
+        <option value="ny-signage.html">Signage Checklist</option>
+        <option value="ny-annual.html">Annual Notice Tracker</option>
+      </optgroup>
+      <optgroup label="Both states">
+        <option value="lead-disclosure.html" selected>Lead Disclosure Form</option>
+      </optgroup>
+    </select>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker">Free tool · Federal — NY, NJ, everywhere</div>
+  <h1>The lead disclosure <em>every pre-1978 rental needs</em></h1>
+  <p class="lede">This is the federal form under 40 CFR Part 745 and 24 CFR Part 35. It's the one
+  Newark Housing Authority, NYCHA and HPD want in your Section 8 packet — but it isn't a housing
+  authority form. Every landlord renting a pre-1978 unit owes it to every tenant, voucher or not,
+  before the lease is signed.</p>
+</header>
+
+<section>
+  <div class="tip">Filling a Section 8 packet? The PHA will reject an RFTA without this form
+  attached for any pre-1978 unit. Complete your parts, then have the tenant sign before you submit.</div>
+
+  <div class="form">
+    <div class="grid">
+      <label class="fld full">Property address
+        <input id="f_addr" placeholder="123 Example Street, Apt 2R, Newark, NJ 07103" oninput="sync()">
+      </label>
+
+      <label class="fld">Landlord / owner name
+        <input id="f_owner" placeholder="Full name or company" oninput="sync()">
+      </label>
+      <label class="fld">Tenant name(s)
+        <input id="f_tenant" placeholder="Full name" oninput="sync()">
+      </label>
+
+      <label class="fld full">Do you know of lead-based paint in this unit?
+        <select id="f_known" onchange="sync()">
+          <option value="none">No — I have no knowledge of lead-based paint or hazards</option>
+          <option value="known">Yes — lead-based paint or hazards are present</option>
+        </select>
+        <span class="hint">Answer honestly. Knowingly failing to disclose carries treble damages.</span>
+      </label>
+
+      <label class="fld full" id="wrap_where" style="display:none">Describe what you know and where
+        <textarea id="f_where" placeholder="Example: 2018 inspection found lead-based paint on the window sills in the front bedroom. Abated and encapsulated the same year." oninput="sync()"></textarea>
+      </label>
+
+      <label class="fld full">Do you have reports or records about lead in this building?
+        <select id="f_records" onchange="sync()">
+          <option value="none">No reports or records available</option>
+          <option value="have">Yes — reports are being provided to the tenant</option>
+        </select>
+      </label>
+
+      <label class="fld full" id="wrap_docs" style="display:none">List the documents provided
+        <textarea id="f_docs" placeholder="Example: XRF inspection report dated 3/14/2019 by ABC Lead Consulting; Lead-Safe Certificate issued 6/2/2024." oninput="sync()"></textarea>
+      </label>
+
+      <label class="fld">Agent involved?
+        <select id="f_hasagent" onchange="sync()">
+          <option value="no">No agent</option>
+          <option value="yes">Yes — agent must also sign</option>
+        </select>
+      </label>
+      <label class="fld">Agent name
+        <input id="f_agent" placeholder="Leave blank if none" oninput="sync()">
+      </label>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="window.print()">🖨️ Print the form</button>
+      <button class="btn ghost" onclick="clearAll()">Clear</button>
+    </div>
+  </div>
+
+  <div class="warn"><b>Two things go with this form, not just the form.</b> You must also give the
+  tenant the EPA pamphlet <i>Protect Your Family from Lead in Your Home</i>, and you must keep the
+  signed disclosure for at least three years. A signed form with no pamphlet is still a violation.</div>
+</section>
+
+<div class="printzone">
+<div class="doc" id="doc">
+  <h3>Disclosure of Information on Lead-Based Paint<br>and Lead-Based Paint Hazards</h3>
+  <p class="lawline">Required for housing built before 1978 · 42 U.S.C. 4852d · 40 CFR Part 745 · 24 CFR Part 35</p>
+
+  <p><b>Property Address:</b> <span class="fillbig" id="o_addr">&nbsp;</span></p>
+
+  <div class="warnbox">
+    <b>Lead Warning Statement.</b> Housing built before 1978 may contain lead-based paint. Lead from
+    paint, paint chips, and dust can pose health hazards if not managed properly. Lead exposure is
+    especially harmful to young children and pregnant women. Before renting pre-1978 housing, lessors
+    must disclose the presence of known lead-based paint and/or lead-based paint hazards in the
+    dwelling. Lessees must also receive a federally approved pamphlet on lead poisoning prevention.
+  </div>
+
+  <h4>Lessor's Disclosure</h4>
+  <p><b>(a) Presence of lead-based paint and/or lead-based paint hazards</b></p>
+  <div class="chk"><span class="bx" id="b_known"></span><span>Known lead-based paint and/or
+    lead-based paint hazards are present in the housing (explain):</span></div>
+  <p style="margin-left:20px"><span class="fillbig" id="o_where">&nbsp;</span></p>
+  <div class="chk"><span class="bx" id="b_none"></span><span>Lessor has no knowledge of lead-based
+    paint and/or lead-based paint hazards in the housing.</span></div>
+
+  <p style="margin-top:12px"><b>(b) Records and reports available to the lessor</b></p>
+  <div class="chk"><span class="bx" id="b_have"></span><span>Lessor has provided the lessee with all
+    available records and reports pertaining to lead-based paint and/or lead-based paint hazards in
+    the housing (list documents below):</span></div>
+  <p style="margin-left:20px"><span class="fillbig" id="o_docs">&nbsp;</span></p>
+  <div class="chk"><span class="bx" id="b_norec"></span><span>Lessor has no reports or records
+    pertaining to lead-based paint and/or lead-based paint hazards in the housing.</span></div>
+
+  <h4>Lessee's Acknowledgment</h4>
+  <div class="chk"><span class="bx"></span><span><b>(c)</b> Lessee has received copies of all
+    information listed above.</span></div>
+  <div class="chk"><span class="bx"></span><span><b>(d)</b> Lessee has received the pamphlet
+    <i>Protect Your Family from Lead in Your Home</i>.</span></div>
+
+  <h4>Agent's Acknowledgment</h4>
+  <div class="chk"><span class="bx"></span><span><b>(e)</b> Agent has informed the lessor of the
+    lessor's obligations under 42 U.S.C. 4852d and is aware of his/her responsibility to ensure
+    compliance.</span></div>
+
+  <h4>Certification of Accuracy</h4>
+  <p>The following parties have reviewed the information above and certify, to the best of their
+  knowledge, that the information they have provided is true and accurate.</p>
+
+  <div class="sigrow">
+    <div class="sig"><div class="ln"></div><small>Lessor / Owner — <span id="o_owner"></span></small></div>
+    <div class="sig"><div class="ln"></div><small>Date</small></div>
+  </div>
+  <div class="sigrow">
+    <div class="sig"><div class="ln"></div><small>Lessee / Tenant — <span id="o_tenant"></span></small></div>
+    <div class="sig"><div class="ln"></div><small>Date</small></div>
+  </div>
+  <div class="sigrow" id="agentrow" style="display:none">
+    <div class="sig"><div class="ln"></div><small>Agent — <span id="o_agent"></span></small></div>
+    <div class="sig"><div class="ln"></div><small>Date</small></div>
+  </div>
+
+  <p style="font-size:11px;color:#555;margin-top:18px">Retain a signed copy for at least three
+  years from the start of the leasing period. Provide the tenant with the EPA pamphlet
+  <i>Protect Your Family from Lead in Your Home</i>, available free at epa.gov/lead.</p>
+</div>
+</div>
+
+<section>
+  <h2>What else your city wants</h2>
+  <p class="sub">State rules are only half of it. These are the local requirements landlords in
+  our area get caught by.</p>
+
+  <div class="tip"><b>Newark — rental registration.</b> Every rented unit in the city must be
+  registered with the Department of Economic and Housing Development, and you cannot lease a unit
+  without a Certificate of Habitability. The city inspects each rental at least once every three
+  years or on a change of occupancy. Violations run up to $1,250 each. Registration stays valid as
+  long as the occupancy and the underlying information don't change.</div>
+
+  <div class="tip"><b>Newark — rent control registration, separate from the above.</b> All dwelling
+  units register annually with the Rent Control Board: $50 per year plus $10 per unit. Late runs
+  $100 plus $20 per unit for every year past due. Allowable annual increases are capped at 4%, and
+  you lose the increase entirely if the building isn't in substantial compliance or you haven't
+  registered. No registration and no taxes current means no Certificate of Habitability.</div>
+
+  <div class="tip"><b>Jersey City — landlord registration.</b> Fewer than three rental units and
+  non-owner-occupied: file the Landlord Registration Form with the City Clerk. More than two units:
+  file with the NJ DCA Bureau of Housing Inspection instead, and DCA forwards a copy to the City
+  Clerk. Owner-occupied is excepted.</div>
+
+  <div class="warn"><b>Where landlords lose money.</b> In Newark, the rent control registration and
+  the rental property registration are two different filings with two different offices. Owners
+  routinely do one and assume they're covered — then find out the missed one blocks their annual
+  increase or their Certificate of Habitability.</div>
+</section>
+
+<div class="strip">
+  <h2>Passing a Section 8 inspection?</h2>
+  <p>Smoke and CO alarms are the number one failed item, and NSPIRE requires hardwired or sealed
+  10-year battery. We stock both, delivered across NY and NJ, quoted per building.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20have%20a%20Section%208%20inspection%20coming%20up%20-%20need%20a%20quote">Get a quote on WhatsApp</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=Section%208%20inspection%20-%20quote">Email us</a>
+</div>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY<br>
+  orderswhiteworks@outlook.com · (347) 645-8900</p>
+  <p style="max-width:62ch;margin-top:14px">This template reproduces the disclosure content required
+  by federal regulation. It is provided for convenience and is not legal advice. Some housing
+  authorities require their own version of this form — check with your PHA before submitting.
+  Municipal fees and procedures change; confirm with the city before relying on the figures above.</p>
+</footer>
+
+</div>
+
+<script>
+function v(id){ return (document.getElementById(id).value || '').trim(); }
+function put(id,val){ const e=document.getElementById(id); if(e) e.textContent = val && val.length ? val : '\u00A0'; }
+
+function sync(){
+  put('o_addr', v('f_addr'));
+  put('o_owner', v('f_owner'));
+  put('o_tenant', v('f_tenant'));
+
+  const known = document.getElementById('f_known').value === 'known';
+  document.getElementById('wrap_where').style.display = known ? '' : 'none';
+  document.getElementById('b_known').classList.toggle('on', known);
+  document.getElementById('b_none').classList.toggle('on', !known);
+  put('o_where', known ? v('f_where') : '');
+
+  const have = document.getElementById('f_records').value === 'have';
+  document.getElementById('wrap_docs').style.display = have ? '' : 'none';
+  document.getElementById('b_have').classList.toggle('on', have);
+  document.getElementById('b_norec').classList.toggle('on', !have);
+  put('o_docs', have ? v('f_docs') : '');
+
+  const hasAgent = document.getElementById('f_hasagent').value === 'yes';
+  document.getElementById('agentrow').style.display = hasAgent ? '' : 'none';
+  put('o_agent', v('f_agent'));
+}
+
+function clearAll(){
+  if(!confirm('Clear everything you typed?')) return;
+  document.querySelectorAll('.form input, .form textarea').forEach(function(i){ i.value=''; });
+  document.getElementById('f_known').value = 'none';
+  document.getElementById('f_records').value = 'none';
+  document.getElementById('f_hasagent').value = 'no';
+  sync();
+}
+sync();
+</script>
+</body>
+</html>

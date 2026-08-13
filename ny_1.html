@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New York Landlord Guides — White Works LLC</title>
+<meta name="description" content="Free guides for NYC landlords: required lobby signage, the January annual notice cycle, Local Law 157 gas alarms, and Section 8 inspection prep.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --green-3:#3B6A50; --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',Georgia,serif;background:var(--cream);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px;width:100%}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}
+.topbar-in{max-width:900px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:'Fraunces',serif;font-weight:900;font-size:21px;letter-spacing:.01em}
+.logo span{font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.3em;color:var(--gold-2);font-weight:700}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none;letter-spacing:.04em}
+
+.back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-decoration:none;
+  font-family:'Archivo',sans-serif;font-weight:600}
+.back:hover{color:var(--gold)}
+
+header{padding:24px 0 32px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold)}
+h1{color:var(--green);font-weight:900;font-size:clamp(34px,5.2vw,50px);line-height:1.04;
+  letter-spacing:-.015em;margin:12px 0 14px}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:17px;color:#4c493f;max-width:60ch}
+
+.guides{display:grid;gap:16px;margin:36px 0 0}
+.guide{display:block;text-decoration:none;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:14px;padding:26px;
+  transition:transform .2s, box-shadow .25s}
+.guide:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(22,56,42,.1)}
+.guide .tag{font-family:'Archivo',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:9px}
+.guide h2{color:var(--green);font-weight:900;font-size:25px;margin:0 0 7px;letter-spacing:-.01em}
+.guide p{font-size:15px;color:#4c493f;margin:0}
+.guide .go{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;color:var(--green);
+  margin-top:15px;display:inline-block;border-bottom:2px solid var(--gold);padding-bottom:2px}
+.guide.soon{opacity:.6}
+.guide.soon:hover{transform:none;box-shadow:none}
+
+.urgent{margin:34px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:28px 26px}
+.urgent .kicker{color:var(--gold-2)}
+.urgent h2{color:var(--cream);font-weight:900;font-size:27px;margin:10px 0 8px;letter-spacing:-.01em}
+.urgent p{font-size:15.5px;color:rgba(242,237,226,.82);margin:0 0 6px}
+.urgent .count{font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold-2);margin-top:14px;display:block}
+
+.strip{margin:34px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:26px}
+.strip h2{color:var(--cream);font-weight:900;font-size:25px;margin:0 0 8px}
+.strip p{font-size:15px;margin:0 0 14px;color:rgba(242,237,226,.85)}
+.btn{display:inline-block;font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;
+  background:var(--gold);color:var(--green);border-radius:8px;padding:13px 20px;
+  text-decoration:none;margin-right:8px;letter-spacing:.03em}
+.btn.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(242,237,226,.45)}
+.btn.ghost:hover{color:var(--gold-2);border-color:var(--gold-2)}
+
+footer{margin-top:auto;padding:42px 0 40px;color:var(--muted);font-size:13px;
+  font-family:'Archivo',sans-serif;border-top:1px solid var(--line);margin-top:44px}
+footer b{color:var(--green)}
+
+.navsel{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;background:#245039;
+  color:#F2EDE2;border:1px solid rgba(217,190,122,.45);border-radius:6px;padding:8px 11px;
+  cursor:pointer;max-width:230px}
+.navsel:hover{border-color:#D9BE7A}
+@media(max-width:620px){.topbar a.wa{display:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <select class="navsel" onchange="if(this.value)location.href=this.value">
+      <option value="">Jump to a guide…</option>
+      <optgroup label="New Jersey">
+        <option value="nj.html">All NJ guides</option>
+        <option value="dca-guide.html">DCA Inspection Guide</option>
+        <option value="compliance.html">Compliance Pack</option>
+        <option value="pest-schedule.html">Pest Schedule Builder</option>
+      </optgroup>
+      <optgroup label="New York">
+        <option value="ny.html" selected>All NY guides</option>
+        <option value="ny-notices.html">Lobby Notice Builder</option>
+        <option value="ny-signage.html">Signage Checklist</option>
+        <option value="ny-annual.html">Annual Notice Tracker</option>
+      </optgroup>
+      <optgroup label="Both states">
+        <option value="lead-disclosure.html">Lead Disclosure Form</option>
+      </optgroup>
+    </select>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<a class="back" href="index.html">← All states</a>
+
+<header>
+  <div class="kicker">New York City</div>
+  <h1>NYC has more posted notices than <em>anywhere else in the country</em></h1>
+  <p class="lede">Fourteen signs in the lobby, an annual mailing every January, and a gas alarm
+  mandate arriving in 2027. Here's what's required, when it's due, and what an inspector writes up
+  when it isn't there.</p>
+</header>
+
+<div class="urgent">
+  <div class="kicker">Deadline · January 1, 2027</div>
+  <h2>Every gas apartment in NYC needs an alarm</h2>
+  <p>Local Law 157 requires a UL 1484 natural gas alarm in every dwelling unit with gas service.
+  Roughly 3.6 million apartments citywide, and close to 90% of NYC homes use gas.</p>
+  <p>Battery units can be installed by your own staff — no electrician, no permit. Tenant
+  reimbursement for a combined smoke/CO/gas device is capped at $75.</p>
+  <span class="count">We stock the DeNova Detect DD620NV and DD623NCV</span>
+</div>
+
+<div class="guides">
+
+  <a class="guide" href="ny-notices.html">
+    <span class="tag">Tool · builder</span>
+    <h2>Lobby Notice Builder</h2>
+    <p>Type your building address, superintendent, boiler room contact and garbage schedule once —
+    the notices fill themselves in, ready to print and hang. Covers the ones where the law
+    specifies required information rather than an official form.</p>
+    <span class="go">Build your notices →</span>
+  </a>
+
+  <a class="guide" href="ny-signage.html">
+    <span class="tag">Checklist</span>
+    <h2>Required Lobby Signage</h2>
+    <p>Every sign a NYC multiple dwelling must post — registration number, superintendent contact,
+    smoke and CO notice, gas leak procedures, garbage schedule, boiler room keys, and the rest.
+    Walk your lobby with it and check off what's already up.</p>
+    <span class="go">Open the checklist →</span>
+  </a>
+
+  <a class="guide" href="ny-annual.html">
+    <span class="tag">Tool · January cycle</span>
+    <h2>The January Annual Notice Tracker</h2>
+    <p>Lead paint and window guard notices go out January 1–15, come back by February 15, and
+    anything unreturned means you inspect the unit by March 1. Track which units responded and
+    print the letter to DOHMH for the ones that didn't.</p>
+    <span class="go">Open the tracker →</span>
+  </a>
+
+  <div class="guide soon">
+    <span class="tag">In progress</span>
+    <h2>Section 8 &amp; NSPIRE Prep</h2>
+    <p>HPD gives you 30 days to correct. NYCHA gives 90. Window guards 21 days. Life-threatening
+    items 24 hours or your payments stop. Guide coming.</p>
+  </div>
+
+  <div class="guide soon">
+    <span class="tag">In progress</span>
+    <h2>Local Law 157 Building Planner</h2>
+    <p>Count your gas-serviced units, price the alarms, and get a per-building plan ahead of the
+    2027 deadline. Coming soon.</p>
+  </div>
+
+</div>
+
+<div class="strip">
+  <h2>Quoted per building, not per piece</h2>
+  <p>Tell us the address and unit count and we'll price the whole property, delivered.
+  Gas alarms, 10-year sealed smoke and CO, window guards, self-closing hardware, chains, peepholes.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20saw%20your%20NY%20guides%20and%20want%20a%20per-building%20quote">Get a quote on WhatsApp</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=NY%20-%20per-building%20quote">Email us</a>
+</div>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY<br>
+  orderswhiteworks@outlook.com · (347) 645-8900</p>
+  <p style="max-width:62ch;margin-top:14px">These materials are templates provided for convenience
+  and are not legal advice. Requirements change and enforcement varies. Confirm current rules with
+  HPD, DOB, FDNY, DOHMH, or your attorney before relying on them.</p>
+</footer>
+
+</div>
+</body>
+</html>

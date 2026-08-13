@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Lobby Notice Builder — White Works LLC</title>
+<meta name="description" content="Fill in your building details once and print the required NYC lobby notices: superintendent contact, HPD registration, boiler room keys, garbage schedule and more.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Fraunces',Georgia,serif;background:var(--cream);color:var(--ink);line-height:1.6}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}
+.topbar-in{max-width:940px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:'Fraunces',serif;font-weight:900;font-size:21px}
+.logo span{font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.3em;color:var(--gold-2);font-weight:700}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none}
+
+.back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-decoration:none;
+  font-family:'Archivo',sans-serif;font-weight:600}
+.back:hover{color:var(--gold)}
+
+header{padding:24px 0 30px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold)}
+h1{color:var(--green);font-weight:900;font-size:clamp(32px,5vw,46px);line-height:1.05;
+  letter-spacing:-.015em;margin:12px 0 14px}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:16.5px;color:#4c493f;max-width:62ch}
+
+section{padding:32px 0}
+h2{color:var(--green);font-weight:900;font-size:clamp(25px,3.6vw,32px);letter-spacing:-.015em}
+.sub{color:#4c493f;font-size:15.5px;margin:8px 0 20px;max-width:64ch}
+
+.form{background:rgba(176,141,46,.1);border:1px solid rgba(176,141,46,.35);border-radius:12px;padding:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.fld{font-family:'Archivo',sans-serif;font-size:11px;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--green);display:flex;flex-direction:column;gap:5px}
+.fld input,.fld select,.fld textarea{font-family:'Fraunces',serif;font-size:15px;font-weight:400;
+  background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--gold)}
+.fld.full{grid-column:1/-1}
+.fld textarea{min-height:62px;resize:vertical}
+.hint{font-family:'Fraunces',serif;font-size:12.5px;font-weight:400;letter-spacing:0;
+  text-transform:none;color:var(--muted);font-style:italic}
+
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;background:var(--gold);
+  color:var(--green);border:none;border-radius:8px;padding:13px 20px;cursor:pointer;
+  text-decoration:none;display:inline-block;letter-spacing:.03em}
+.btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--line)}
+
+/* notice previews */
+.notice{background:#fff;color:#111;border:1px solid var(--line);border-radius:10px;
+  padding:34px 32px;margin-top:18px;position:relative}
+.notice .why{font-family:'Archivo',sans-serif;font-size:10px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);position:absolute;top:14px;right:18px}
+.notice h3{font-family:'Archivo',sans-serif;font-weight:900;font-size:21px;letter-spacing:.02em;
+  text-transform:uppercase;color:#111;margin-bottom:4px;line-height:1.2}
+.notice .code{font-family:'Archivo',sans-serif;font-size:11px;color:#666;letter-spacing:.06em;
+  margin-bottom:18px;display:block}
+.notice .row{font-size:17px;margin:11px 0}
+.notice .row b{font-family:'Archivo',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:#555;display:block;margin-bottom:1px}
+.notice .big{font-size:23px;font-weight:700}
+.notice .es{margin-top:22px;padding-top:18px;border-top:1px solid #ccc}
+.notice .fine{font-size:12.5px;color:#666;margin-top:18px}
+.notice .print{position:absolute;bottom:16px;right:18px}
+.notice.hide{display:none}
+
+.official{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:16px}
+.official h3{color:var(--green);font-weight:900;font-size:20px;margin-bottom:6px}
+.official ul{list-style:none;padding:0;margin:14px 0 0}
+.official li{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.official li:last-child{border-bottom:none}
+.official li b{color:var(--green)}
+.official li small{display:block;color:var(--muted);font-size:12.5px;
+  font-family:'Archivo',sans-serif;margin-top:2px}
+.official a{color:var(--green);font-weight:700;text-decoration:none;border-bottom:2px solid var(--gold)}
+.official a:hover{color:var(--gold)}
+
+.warn{background:rgba(139,58,46,.08);border-left:3px solid var(--rust);padding:15px 17px;
+  border-radius:0 10px 10px 0;font-size:14.5px;margin:22px 0}
+.warn b{color:var(--rust)}
+
+.strip{margin:36px 0 0;background:var(--green);color:var(--cream);border-radius:14px;padding:26px}
+.strip h2{color:var(--cream);font-size:25px;margin:0 0 8px}
+.strip p{font-size:15px;margin:0 0 14px;color:rgba(242,237,226,.85)}
+.strip .btn.ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(242,237,226,.45)}
+
+footer{padding:40px 0;color:var(--muted);font-size:13px;font-family:'Archivo',sans-serif;
+  border-top:1px solid var(--line);margin-top:38px}
+footer b{color:var(--green)}
+
+@media print{
+  body{background:#fff}
+  body > *:not(.printing){display:none!important}
+  .printing{display:block!important}
+  .printing .notice{display:none}
+  .printing .notice.printme{display:block;border:none;padding:0;margin:0;page-break-after:always}
+  .printing .why,.printing .print{display:none}
+  @page{margin:.7in}
+}
+
+.navsel{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;background:#245039;
+  color:#F2EDE2;border:1px solid rgba(217,190,122,.45);border-radius:6px;padding:8px 11px;
+  cursor:pointer;max-width:230px}
+.navsel:hover{border-color:#D9BE7A}
+@media(max-width:620px){.topbar a.wa{display:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <select class="navsel" onchange="if(this.value)location.href=this.value">
+      <option value="">Jump to a guide…</option>
+      <optgroup label="New Jersey">
+        <option value="nj.html">All NJ guides</option>
+        <option value="dca-guide.html">DCA Inspection Guide</option>
+        <option value="compliance.html">Compliance Pack</option>
+        <option value="pest-schedule.html">Pest Schedule Builder</option>
+      </optgroup>
+      <optgroup label="New York">
+        <option value="ny.html">All NY guides</option>
+        <option value="ny-notices.html" selected>Lobby Notice Builder</option>
+        <option value="ny-signage.html">Signage Checklist</option>
+        <option value="ny-annual.html">Annual Notice Tracker</option>
+      </optgroup>
+      <optgroup label="Both states">
+        <option value="lead-disclosure.html">Lead Disclosure Form</option>
+      </optgroup>
+    </select>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<a class="back" href="ny.html">← New York guides</a>
+
+<header>
+  <div class="kicker">Free tool · New York City</div>
+  <h1>Fill it in once. <em>Print your lobby.</em></h1>
+  <p class="lede">Type your building information below and the notices fill themselves in.
+  Print them, put them behind glass, hang them. Nothing is saved or sent anywhere.</p>
+</header>
+
+<section>
+  <div class="form">
+    <div class="grid">
+      <label class="fld full">Building address
+        <input id="f_addr" placeholder="1234 Example Avenue, Brooklyn, NY 11219" oninput="sync()">
+      </label>
+      <label class="fld">HPD registration number
+        <input id="f_reg" placeholder="123456" oninput="sync()">
+        <span class="hint">On your HPD registration confirmation</span>
+      </label>
+      <label class="fld">Building has rent-stabilized units?
+        <select id="f_rs" onchange="sync()">
+          <option value="no">No</option>
+          <option value="yes">Yes — one or more</option>
+        </select>
+      </label>
+
+      <label class="fld">Superintendent / janitor name
+        <input id="f_super" placeholder="Full name" oninput="sync()">
+      </label>
+      <label class="fld">Superintendent phone
+        <input id="f_superph" placeholder="(347) 000-0000" oninput="sync()">
+      </label>
+      <label class="fld full">Superintendent address
+        <input id="f_superaddr" placeholder="Where the super can be reached" oninput="sync()">
+      </label>
+
+      <label class="fld">Managing agent / owner name
+        <input id="f_agent" placeholder="Name or company" oninput="sync()">
+      </label>
+      <label class="fld">Managing agent phone
+        <input id="f_agentph" placeholder="(347) 000-0000" oninput="sync()">
+      </label>
+      <label class="fld full">Managing agent address
+        <input id="f_agentaddr" placeholder="Business address" oninput="sync()">
+      </label>
+
+      <label class="fld">Who holds the boiler room keys
+        <input id="f_boiler" placeholder="Name" oninput="sync()">
+      </label>
+      <label class="fld">Where they can be found
+        <input id="f_boilerloc" placeholder="Apartment 1A / on site 8am-4pm" oninput="sync()">
+      </label>
+
+      <label class="fld">Heating system contact
+        <input id="f_heat" placeholder="Name of person responsible" oninput="sync()">
+        <span class="hint">Can be the same as the super</span>
+      </label>
+      <label class="fld">Heating contact phone
+        <input id="f_heatph" placeholder="(347) 000-0000" oninput="sync()">
+      </label>
+
+      <label class="fld full">Garbage collection — days and method
+        <textarea id="f_trash" placeholder="Trash: Monday, Wednesday, Friday before 8:00 AM — bins in the rear courtyard.
+Recycling: Tuesday — blue bin, paper in the clear bags." oninput="sync()"></textarea>
+      </label>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="printAll()">🖨️ Print all notices</button>
+      <button class="btn ghost" onclick="clearAll()">Clear the form</button>
+    </div>
+  </div>
+
+  <div class="warn"><b>Print on letter paper, then protect it.</b> Notices have to stay legible and
+  in place. HPD requires the garbage schedule specifically to be behind plastic or in a frame so it
+  can't be torn down — and in practice, that goes for all of them. A faded or missing notice is
+  written up the same as one that was never posted.</div>
+</section>
+
+<section id="out">
+  <h2>Your notices</h2>
+  <p class="sub">These fill in as you type. Each one prints on its own page.</p>
+
+  <div class="notice" id="n_reg">
+    <span class="why">Entrance hall</span>
+    <h3>Building Registration</h3>
+    <span class="code">HMC § 27-2107 · Must be posted in the entrance hall</span>
+    <div class="row"><b>Building address</b><span class="big" id="o_addr">&nbsp;</span></div>
+    <div class="row"><b>HPD registration number</b><span class="big" id="o_reg">&nbsp;</span></div>
+    <div class="row"><b>Superintendent / janitor / housekeeper</b><span id="o_super1">&nbsp;</span></div>
+    <div class="row"><b>Telephone</b><span id="o_superph1">&nbsp;</span></div>
+    <div class="row"><b>Address</b><span id="o_superaddr1">&nbsp;</span></div>
+  </div>
+
+  <div class="notice" id="n_super">
+    <span class="why">Entrance lobby</span>
+    <h3>Building Contacts</h3>
+    <span class="code">HMC § 27-2053 · Conspicuous notice in the entrance lobby</span>
+    <div class="row"><b>Superintendent</b><span class="big" id="o_super2">&nbsp;</span></div>
+    <div class="row"><b>Telephone</b><span class="big" id="o_superph2">&nbsp;</span></div>
+    <div class="row"><b>Address</b><span id="o_superaddr2">&nbsp;</span></div>
+    <div class="es">
+      <div class="row"><b>Managing agent / owner</b><span class="big" id="o_agent">&nbsp;</span></div>
+      <div class="row"><b>Telephone</b><span class="big" id="o_agentph">&nbsp;</span></div>
+      <div class="row"><b>Address</b><span id="o_agentaddr">&nbsp;</span></div>
+    </div>
+    <p class="fine">For emergencies affecting the building, contact the superintendent first.
+    Para emergencias que afecten el edificio, comuníquese primero con el superintendente.</p>
+  </div>
+
+  <div class="notice" id="n_boiler">
+    <span class="why">Lobby — print two, one for the boiler room door</span>
+    <h3>Boiler Room Access</h3>
+    <span class="code">One copy in the lobby, one on the boiler room entrance door</span>
+    <div class="row"><b>Person with keys to the boiler room</b><span class="big" id="o_boiler">&nbsp;</span></div>
+    <div class="row"><b>Where this person can be found</b><span class="big" id="o_boilerloc">&nbsp;</span></div>
+    <div class="es">
+      <div class="row"><b>Person responsible for the heating system</b><span class="big" id="o_heat">&nbsp;</span></div>
+      <div class="row"><b>Telephone</b><span class="big" id="o_heatph">&nbsp;</span></div>
+    </div>
+    <p class="fine">Acceso a la sala de calderas — persona con las llaves y responsable del sistema
+    de calefacción.</p>
+  </div>
+
+  <div class="notice" id="n_trash">
+    <span class="why">Lobby — behind plastic or framed</span>
+    <h3>Garbage Collection</h3>
+    <span class="code">Required where there is no 24-hour dumbwaiter service</span>
+    <div class="row"><b>Building</b><span id="o_addr2">&nbsp;</span></div>
+    <div class="row" style="white-space:pre-line;font-size:18px;line-height:1.7" id="o_trash">&nbsp;</div>
+    <p class="fine">Please break down boxes and keep the area clear. Recycling must be separated.<br>
+    Por favor desarme las cajas y mantenga el área despejada. El reciclaje debe separarse.</p>
+  </div>
+
+  <div class="notice hide" id="n_rs">
+    <span class="why">Common area — English and Spanish</span>
+    <h3>Notice to Tenants of Rent Stabilized Dwelling Units</h3>
+    <span class="code">Required only where one or more units are rent stabilized</span>
+    <div class="row"><b>Building address</b><span class="big" id="o_addr3">&nbsp;</span></div>
+    <div class="row"><b>HPD property registration number</b><span class="big" id="o_reg2">&nbsp;</span></div>
+    <p style="font-size:18px;margin-top:16px">This building contains one or more units that are
+    subject to the Rent Stabilization Law of 1969.</p>
+    <div class="es">
+      <p style="font-size:18px">Este edificio contiene una o más unidades sujetas a la Ley de
+      Estabilización de Alquileres de 1969.</p>
+    </div>
+    <p class="fine">Confirm the current required wording with HPD before posting — this notice
+    was added recently and the exact language may be updated.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The ones you can't make yourself</h2>
+  <p class="sub">These must be HPD's or FDNY's approved form, not a lookalike. Owners have been
+  fined for posting signs that read correctly but don't match the official specification —
+  especially the combined smoke/CO/gas notice. Download the real ones.</p>
+
+  <div class="official">
+    <h3>Get these from the agency</h3>
+    <ul>
+      <li><b>Smoke and CO detecting devices notice</b> — 28 RCNY § 12-01, HMC § 27-2046.1
+        <small>May be posted as a combined notice with gas leak procedures. Must be the HPD-approved form.</small></li>
+      <li><b>Gas leak procedures notice</b> — Local Law 153 of 2016
+        <small>Must follow HPD's graphical specification exactly.</small></li>
+      <li><b>Emergency preparedness notice</b> — FDNY
+        <small>Two versions: non-combustible fireproof, and combustible non-fireproof. Posting the
+        wrong one for your building type counts as not posting it. Inside every apartment door and
+        in the lobby.</small></li>
+      <li><b>"Shut the Door" notice</b> — Local Law 115, FDNY</li>
+      <li><b>ABCs of Housing notice</b> — Admin Code § 26-1103
+        <small>Within view of where mail is delivered.</small></li>
+      <li><b>Annual lead paint and window guard notice</b> — DOHMH approved form
+        <small>Goes out January 1–15 each year. Our
+        <a href="ny-annual.html">annual notice tracker</a> handles the follow-up.</small></li>
+      <li><b>Bedbug annual filing receipt</b>
+        <small>Generated when you file with HPD. Post it or hand it to tenants at lease and renewal,
+        along with the "Stop Bed Bugs Safely" brochure.</small></li>
+    </ul>
+    <p style="margin-top:16px;font-size:14.5px">Official forms are on
+      <a href="https://www.nyc.gov/site/hpd/services-and-information/required-signage.page" target="_blank" rel="noopener">HPD's required signage page</a>.
+      Not sure what's missing from your lobby? Walk it with the
+      <a href="ny-signage.html">signage checklist</a> first.</p>
+  </div>
+</section>
+
+<div class="strip">
+  <h2>We supply what the notices are about</h2>
+  <p>Smoke and CO alarms, natural gas alarms, self-closing hardware, window guards, chains and
+  peepholes — delivered across NYC, quoted per building.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20used%20your%20NYC%20notice%20builder%20and%20want%20a%20quote">Get a quote on WhatsApp</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=NYC%20building%20quote">Email us</a>
+</div>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY<br>
+  orderswhiteworks@outlook.com · (347) 645-8900</p>
+  <p style="max-width:62ch;margin-top:14px">These templates cover notices where the law specifies
+  required information rather than an approved graphic form. They are provided for convenience and
+  are not legal advice. Where an agency publishes an official form, use that form. Confirm current
+  requirements with HPD, FDNY, DOB or DOHMH.</p>
+</footer>
+
+</div>
+
+<script>
+function v(id){ return (document.getElementById(id).value || '').trim(); }
+function put(id, val){
+  const el = document.getElementById(id);
+  if(el) el.textContent = val && val.length ? val : '\u00A0';
+}
+
+function sync(){
+  const addr = v('f_addr');
+  put('o_addr', addr); put('o_addr2', addr); put('o_addr3', addr);
+
+  const reg = v('f_reg');
+  put('o_reg', reg); put('o_reg2', reg);
+
+  put('o_super1', v('f_super'));      put('o_super2', v('f_super'));
+  put('o_superph1', v('f_superph'));  put('o_superph2', v('f_superph'));
+  put('o_superaddr1', v('f_superaddr')); put('o_superaddr2', v('f_superaddr'));
+
+  put('o_agent', v('f_agent'));
+  put('o_agentph', v('f_agentph'));
+  put('o_agentaddr', v('f_agentaddr'));
+
+  put('o_boiler', v('f_boiler'));
+  put('o_boilerloc', v('f_boilerloc'));
+  put('o_heat', v('f_heat'));
+  put('o_heatph', v('f_heatph'));
+
+  put('o_trash', v('f_trash'));
+
+  document.getElementById('n_rs').classList.toggle('hide', document.getElementById('f_rs').value !== 'yes');
+}
+
+function printAll(){
+  const out = document.getElementById('out');
+  out.classList.add('printing');
+  out.querySelectorAll('.notice').forEach(function(n){
+    n.classList.toggle('printme', !n.classList.contains('hide'));
+  });
+  window.print();
+}
+
+function clearAll(){
+  if(!confirm('Clear everything you typed?')) return;
+  document.querySelectorAll('.form input, .form textarea').forEach(function(i){ i.value = ''; });
+  document.getElementById('f_rs').value = 'no';
+  sync();
+}
+
+window.addEventListener('afterprint', function(){
+  const out = document.getElementById('out');
+  out.classList.remove('printing');
+  out.querySelectorAll('.notice').forEach(function(n){ n.classList.remove('printme'); });
+});
+
+sync();
+</script>
+</body>
+</html>

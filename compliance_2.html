@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NJ Landlord Compliance Pack — White Works</title>
+<meta name="description" content="Free printable notices, forms and turnover checklists for New Jersey landlords and property managers.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@500;600;700;800&display=swap');
+:root{
+  --cream:#F2EDE2; --paper:#FBF8F1; --green:#16382A; --green-2:#245039;
+  --green-3:#3B6A50; --gold:#B08D2E; --gold-2:#D9BE7A; --ink:#26251E;
+  --muted:#7C7668; --line:#DDD5C2; --rust:#8B3A2E;
+  --panel:#FBF8F1; --panel-2:#16382A; --brass:#B08D2E; --brass-soft:#D9BE7A;
+  --red:#8B3A2E;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:'Fraunces',Georgia,serif;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+header{padding:26px 0 32px;border-bottom:1px solid var(--line)}
+.kicker{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+h1{color:var(--green);font-family:'Fraunces',Georgia,serif;font-size:44px;line-height:1.06;margin:10px 0 12px;font-weight:900;letter-spacing:-.015em}
+h1 em{color:var(--brass-soft);font-style:normal}
+.lede{font-size:17px;color:#5c5849;max-width:60ch}
+
+.back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-decoration:none;font-family:'Archivo',sans-serif;font-weight:600}
+.back:hover{color:var(--brass)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+nav.toc a{font-size:13px;font-weight:600;text-decoration:none;color:var(--green);font-family:'Archivo',sans-serif;
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+nav.toc a:hover{border-color:var(--brass);color:var(--brass-soft)}
+
+section{padding:38px 0;border-bottom:1px solid var(--line)}
+h2{color:var(--green);font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:700;margin:0 0 6px}
+.sub{color:#5c5849;font-size:14.5px;margin:0 0 22px}
+h3{font-size:16px;margin:24px 0 8px}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+.card.flag{border-left:3px solid var(--brass)}
+
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+ul.check li:last-child{border-bottom:none}
+ul.check input{margin-top:5px;width:17px;height:17px;accent-color:var(--brass);flex:0 0 auto}
+ul.check small{display:block;color:#5c5849;font-size:13px;margin-top:2px}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Archivo',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
+td.when{color:var(--brass-soft);white-space:nowrap}
+
+.fill{background:transparent;border:none;border-bottom:1px dashed var(--muted);color:var(--brass-soft);
+  font:600 15px 'Archivo',sans-serif;padding:2px 4px;min-width:150px}
+.fill:focus{outline:none;border-bottom-color:var(--brass)}
+
+.btn{display:inline-block;background:var(--gold);color:var(--green);border:none;border-radius:10px;
+  padding:12px 20px;font:800 14px 'Archivo',sans-serif;cursor:pointer;text-decoration:none;margin-top:14px}
+.btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--line)}
+.strip .btn.ghost,.cta .btn.ghost{color:var(--cream);border-color:rgba(242,237,226,.45)}
+.strip .btn.ghost:hover,.cta .btn.ghost:hover{color:var(--gold-2);border-color:var(--gold-2)}
+
+.doc{background:#fff;color:#111;border-radius:10px;padding:28px;margin-top:14px;font-size:14px;line-height:1.55}
+.doc h4{margin:0 0 4px;font-size:17px;text-transform:uppercase;letter-spacing:.04em}
+.doc .es{margin-top:20px;padding-top:18px;border-top:1px solid #ccc}
+.doc .line{border-bottom:1px solid #444;display:inline-block;min-width:190px}
+.doc small{color:#555}
+
+.note{background:rgba(201,162,39,.09);border-left:3px solid var(--brass);padding:14px 16px;
+  border-radius:0 10px 10px 0;font-size:14px;margin-top:16px}
+.warn{background:rgba(224,106,90,.1);border-left:3px solid var(--red);padding:14px 16px;
+  border-radius:0 10px 10px 0;font-size:14px;margin-top:16px}
+
+.cta{background:var(--green);border:1px solid var(--green);color:var(--cream);border-radius:16px;padding:28px;margin:38px 0}
+.cta h2{margin-top:0;color:var(--cream)}
+footer{padding:34px 0 60px;color:#5c5849;font-size:13px}
+
+@media print{
+  body{background:#fff;color:#000}
+  header,nav.toc,.cta,footer,.btn,.back,.no-print{display:none!important}
+  section{border:none;padding:0;page-break-after:always}
+  .doc{padding:0}
+  h2{color:#000}
+}
+
+.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}
+.topbar-in{max-width:820px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{color:var(--cream);text-decoration:none;display:flex;align-items:baseline;gap:8px}
+.logo b{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:21px;letter-spacing:.01em}
+.logo span{font-size:9px;letter-spacing:.3em;color:var(--brass-soft);font-weight:700}
+.topbar a.wa{font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;background:var(--gold);
+  color:var(--green);padding:9px 15px;border-radius:6px;text-decoration:none;letter-spacing:.03em}
+@media print{.topbar{border-bottom:2px solid var(--gold);background:rgba(22,56,42,.97);position:sticky;top:0;z-index:50}}
+
+.navsel{font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;background:#245039;
+  color:#F2EDE2;border:1px solid rgba(217,190,122,.45);border-radius:6px;padding:8px 11px;
+  cursor:pointer;max-width:230px}
+.navsel:hover{border-color:#D9BE7A}
+@media(max-width:620px){.topbar a.wa{display:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="index.html"><b>White Works</b><span>L·L·C</span></a>
+    <select class="navsel" onchange="if(this.value)location.href=this.value">
+      <option value="">Jump to a guide…</option>
+      <optgroup label="New Jersey">
+        <option value="nj.html">All NJ guides</option>
+        <option value="dca-guide.html">DCA Inspection Guide</option>
+        <option value="compliance.html" selected>Compliance Pack</option>
+        <option value="pest-schedule.html">Pest Schedule Builder</option>
+      </optgroup>
+      <optgroup label="New York">
+        <option value="ny.html">All NY guides</option>
+        <option value="ny-notices.html">Lobby Notice Builder</option>
+        <option value="ny-signage.html">Signage Checklist</option>
+        <option value="ny-annual.html">Annual Notice Tracker</option>
+      </optgroup>
+      <optgroup label="Both states">
+        <option value="lead-disclosure.html">Lead Disclosure Form</option>
+      </optgroup>
+    </select>
+    <a class="wa" href="https://wa.me/13476458900?text=Hi%20White%20Works!" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+</div>
+<div class="wrap">
+
+<a class="back" href="nj.html">← New Jersey guides</a>
+
+<header>
+  <div class="kicker">Free resource · White Works LLC</div>
+  <h1>The New Jersey <em>Landlord Compliance Pack</em></h1>
+  <p class="lede">The notices you're required to post, the forms you're required to hand over, and the
+  checklist that gets a unit through a turnover inspection the first time. Print what you need.</p>
+  <nav class="toc">
+    <a href="#turnover">Turnover checklist</a>
+    <a href="#posted">Posted notices</a>
+    <a href="#windowguard">Window guard form</a>
+    <a href="#lead">Lead-safe rules</a>
+    <a href="#calendar">What's due when</a>
+  </nav>
+</header>
+
+<!-- ============ TURNOVER ============ -->
+<section id="turnover">
+  <h2>Change-of-occupancy checklist</h2>
+  <p class="sub">Before a unit is sold, leased, or handed to a new tenant, New Jersey requires a
+  Certificate of Smoke Alarm, Carbon Monoxide Alarm and Portable Fire Extinguisher Compliance
+  (CSACMAPFEC) from your local enforcing agency. The certificate is good for six months or until
+  the next change of occupancy, whichever comes first.</p>
+
+  <div class="card flag">
+    <h3>Smoke alarms</h3>
+    <ul class="check">
+      <li><input type="checkbox"><span>Ten-year sealed-battery type
+        <small>Standard replaceable-battery units will fail. Sealed 10-year devices are the requirement.</small></span></li>
+      <li><input type="checkbox"><span>One on every level of the unit</span></li>
+      <li><input type="checkbox"><span>One outside each separate sleeping area
+        <small>Within 10 feet of the sleeping area.</small></span></li>
+      <li><input type="checkbox"><span>Hardwired units still hardwired
+        <small>You cannot replace an existing hardwired device with a battery one. Common failure.</small></span></li>
+      <li><input type="checkbox"><span>Nothing older than 10 years, all in working order</span></li>
+      <li><input type="checkbox"><span>UL/ANSI listed, maintained to NFPA 72</span></li>
+    </ul>
+  </div>
+
+  <div class="card flag">
+    <h3>Carbon monoxide alarms</h3>
+    <ul class="check">
+      <li><input type="checkbox"><span>Within 10 feet of each sleeping area</span></li>
+      <li><input type="checkbox"><span>Working per manufacturer's spec
+        <small>Battery, plug-in, or part of a central station system are all acceptable.</small></span></li>
+    </ul>
+  </div>
+
+  <div class="card flag">
+    <h3>Portable fire extinguisher</h3>
+    <ul class="check">
+      <li><input type="checkbox"><span>Listed, labeled, charged and operable</span></li>
+      <li><input type="checkbox"><span>Brand new with receipt, or tagged within the last 12 months
+        <small>Tag must be from a Division of Fire Safety certified contractor. An untagged old extinguisher fails.</small></span></li>
+      <li><input type="checkbox"><span>Mounted and readily accessible
+        <small>If it's in a cabinet or closet, the door must be labeled "Fire Extinguisher Inside."</small></span></li>
+      <li><input type="checkbox"><span>In or within 10 feet of the kitchen</span></li>
+      <li><input type="checkbox"><span>Top no more than 5 feet off the floor
+        <small>Bottom at least 4 inches up. Chest height is the safe target.</small></span></li>
+      <li><input type="checkbox"><span>Owner's manual left for the new occupant</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>If the unit has a fire alarm system</h3>
+    <ul class="check">
+      <li><input type="checkbox"><span>Tested before the inspection by a certified alarm contractor</span></li>
+      <li><input type="checkbox"><span>Test record in hand for the inspector
+        <small>Inspectors generally will not test the system themselves. No report usually means an automatic fail.</small></span></li>
+    </ul>
+  </div>
+
+  <div class="warn"><b>Apply early.</b> Municipal fees climb sharply the closer you get to the
+  occupancy date — the same certificate can run roughly $40–$70 with over ten business days' notice
+  and $125–$211 inside four days. Fees are set locally, so confirm with your town.</div>
+
+  <button class="btn no-print" onclick="window.print()">Print this checklist</button>
+</section>
+
+<!-- ============ POSTED NOTICES ============ -->
+<section id="posted">
+  <h2>What has to be posted in the building</h2>
+  <p class="sub">Multiple dwellings — three or more units — must post emergency contact information
+  and social services hotline instructions in a conspicuous spot where tenants will see them,
+  in both English and Spanish. Management companies must also put this on their website.</p>
+
+  <p style="font-size:14.5px">Fill in your details below and the notice fills itself in. Then print.</p>
+
+  <div class="card no-print">
+    <label style="font-size:13px;color:#5c5849">Owner or managing agent name</label><br>
+    <input class="fill" id="i_name" placeholder="Name" oninput="sync()"><br><br>
+    <label style="font-size:13px;color:#5c5849">24-hour emergency phone</label><br>
+    <input class="fill" id="i_phone" placeholder="(000) 000-0000" oninput="sync()"><br><br>
+    <label style="font-size:13px;color:#5c5849">Mailing address</label><br>
+    <input class="fill" id="i_addr" placeholder="Address" oninput="sync()"><br><br>
+    <label style="font-size:13px;color:#5c5849">Management company website</label><br>
+    <input class="fill" id="i_web" placeholder="www.example.com" oninput="sync()">
+  </div>
+
+  <div class="doc">
+    <h4>Emergency Contact Notice</h4>
+    <small>Posted under N.J.S.A. 46:8-28 and related requirements</small>
+    <p>In the event of an emergency affecting this building or any dwelling unit, contact:</p>
+    <p>
+      <b>Owner / Managing Agent:</b> <span class="line" id="o_name">&nbsp;</span><br><br>
+      <b>Emergency telephone (24 hours):</b> <span class="line" id="o_phone">&nbsp;</span><br><br>
+      <b>Address:</b> <span class="line" id="o_addr">&nbsp;</span>
+    </p>
+    <p><b>Social services information hotline:</b> Dial <b>2-1-1</b> from any phone in New Jersey,
+    or visit nj211.org, for free confidential information about housing, utilities, food and
+    other assistance programs. Available 24 hours a day.</p>
+    <p><b>Management company website:</b> <span class="line" id="o_web">&nbsp;</span></p>
+
+    <div class="es">
+      <h4>Aviso de Contacto de Emergencia</h4>
+      <p>En caso de una emergencia que afecte este edificio o cualquier unidad de vivienda, comuníquese con:</p>
+      <p>
+        <b>Propietario / Agente Administrador:</b> <span class="line" id="s_name">&nbsp;</span><br><br>
+        <b>Teléfono de emergencia (24 horas):</b> <span class="line" id="s_phone">&nbsp;</span><br><br>
+        <b>Dirección:</b> <span class="line" id="s_addr">&nbsp;</span>
+      </p>
+      <p><b>Línea de información de servicios sociales:</b> Marque <b>2-1-1</b> desde cualquier
+      teléfono en Nueva Jersey, o visite nj211.org, para obtener información gratuita y confidencial
+      sobre vivienda, servicios públicos, alimentos y otros programas de asistencia.
+      Disponible las 24 horas del día.</p>
+      <p><b>Sitio web de la administración:</b> <span class="line" id="s_web">&nbsp;</span></p>
+    </div>
+  </div>
+
+  <button class="btn no-print" onclick="window.print()">Print the notice</button>
+
+  <h3>Also required</h3>
+  <div class="card">
+    <ul class="check">
+      <li><input type="checkbox"><span>Registration statement posted where it's easily seen
+        <small>Buildings with three or more units file with the DCA Bureau of Housing Inspection. One- and two-family non-owner-occupied houses file with the municipal clerk. A copy also goes to the tenant.</small></span></li>
+      <li><input type="checkbox"><span>Truth in Renting statement given to every tenant
+        <small>At or before the time occupancy begins. Free from the DCA website.</small></span></li>
+      <li><input type="checkbox"><span>Emergency special-assistance list notice
+        <small>Tell tenants the municipal clerk keeps a list of residents who need help evacuating in an emergency, and how to get on it.</small></span></li>
+      <li><input type="checkbox"><span>Flood zone disclosure in the lease, if applicable</span></li>
+      <li><input type="checkbox"><span>Website address and hotline instructions in boldface in every lease</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ WINDOW GUARD ============ -->
+<section id="windowguard">
+  <h2>Window guard acknowledgment</h2>
+  <p class="sub">New Jersey requires more than a line in the lease. At signing you must verbally tell
+  the tenant they can request window guards, and that has to be confirmed in a written document
+  separate from the lease, signed by both parties. The lease itself also needs the notice in
+  prominent boldface.</p>
+
+  <div class="doc">
+    <h4>Window Guard Notice and Acknowledgment</h4>
+    <small>Required under P.L. 1995, c.120 (N.J.S.A. 55:13A-7.12 et seq.)</small>
+    <p><b>Property:</b> <span class="line">&nbsp;</span> &nbsp;&nbsp;
+       <b>Unit:</b> <span class="line" style="min-width:80px">&nbsp;</span></p>
+    <p>The owner or managing agent of this multiple dwelling is required by law to install window
+    guards in any unit where a child ten years of age or younger resides, or upon the written
+    request of the tenant, whether or not a child lives in the unit.</p>
+    <p>By signing below, the tenant acknowledges having been informed, verbally and in writing,
+    of the right to request installation of window guards.</p>
+    <p style="margin-top:26px">
+      Tenant signature: <span class="line" style="min-width:250px">&nbsp;</span>
+      &nbsp;&nbsp; Date: <span class="line" style="min-width:110px">&nbsp;</span>
+    </p>
+    <p style="margin-top:18px">
+      Owner / agent signature: <span class="line" style="min-width:250px">&nbsp;</span>
+      &nbsp;&nbsp; Date: <span class="line" style="min-width:110px">&nbsp;</span>
+    </p>
+    <div class="es">
+      <h4>Aviso y Reconocimiento de Protectores de Ventanas</h4>
+      <p>El propietario o agente administrador está obligado por ley a instalar protectores de
+      ventanas en cualquier unidad donde resida un niño de diez años o menor, o a solicitud escrita
+      del inquilino, viva o no un niño en la unidad.</p>
+      <p>Al firmar a continuación, el inquilino reconoce haber sido informado, verbalmente y por
+      escrito, del derecho a solicitar la instalación de protectores de ventanas.</p>
+      <p style="margin-top:26px">
+        Firma del inquilino: <span class="line" style="min-width:250px">&nbsp;</span>
+        &nbsp;&nbsp; Fecha: <span class="line" style="min-width:110px">&nbsp;</span>
+      </p>
+    </div>
+  </div>
+  <button class="btn no-print" onclick="window.print()">Print the form</button>
+</section>
+
+<!-- ============ LEAD ============ -->
+<section id="lead">
+  <h2>Lead-safe certification</h2>
+  <p class="sub">Rental units built before 1978 need a visual inspection or dust wipe test, then
+  re-inspection every three years or at tenant turnover, whichever comes first. Lead-safe
+  certificates are valid two years.</p>
+
+  <div class="card flag">
+    <h3>The exemption most landlords don't know about</h3>
+    <p style="font-size:15px;margin:0">Multiple dwellings registered with DCA for at least ten years
+    with no outstanding lead violations from the most recent cyclical inspection under the Hotel and
+    Multiple Dwelling Law are exempt from this requirement. If you have a current certificate of
+    inspection from the Bureau of Housing Inspection, check whether it covers you before paying for
+    a separate lead inspection.</p>
+  </div>
+
+  <div class="card">
+    <ul class="check">
+      <li><input type="checkbox"><span>Built 1978 or later — exempt, no inspection needed</span></li>
+      <li><input type="checkbox"><span>Certified lead-free by a certified evaluation contractor — exempt</span></li>
+      <li><input type="checkbox"><span>Registered with DCA 10+ years, no outstanding lead violations — likely exempt</span></li>
+      <li><input type="checkbox"><span>Otherwise: schedule inspection at turnover or every 3 years</span></li>
+      <li><input type="checkbox"><span>Certificate filed with the municipality if you hired privately</span></li>
+    </ul>
+  </div>
+  <div class="note">If hazards are found you'll need either interim controls — cleaning, repair,
+  repainting, containment — or full abatement. Income-eligible units may qualify for free work
+  through the state's Lead Remediation and Abatement Program.</div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section id="calendar">
+  <h2>What's due when</h2>
+  <p class="sub">The recurring obligations, in one place.</p>
+  <table>
+    <tr><th>Trigger</th><th>What's required</th></tr>
+    <tr><td class="when">Every turnover</td><td>CSACMAPFEC certificate — smoke, CO and extinguisher inspection. Apply 10+ business days ahead to avoid rush fees.</td></tr>
+    <tr><td class="when">Every turnover</td><td>Lead inspection, if pre-1978 and not exempt and the certificate has lapsed.</td></tr>
+    <tr><td class="when">Every new lease</td><td>Truth in Renting statement, window guard acknowledgment, registration statement copy, flood disclosure if applicable.</td></tr>
+    <tr><td class="when">Every 3 years</td><td>Lead re-inspection if no turnover has occurred.</td></tr>
+    <tr><td class="when">Every 2, 5 or 7 years</td><td>DCA cyclical inspection for buildings of 3+ units. Your tier depends on violation history — clean records get the longest cycle.</td></tr>
+    <tr><td class="when">Ongoing</td><td>Posted notices kept current and legible, in English and Spanish, and on the management website.</td></tr>
+    <tr><td class="when">Every 12 months</td><td>Fire extinguisher service tags renewed.</td></tr>
+    <tr><td class="when">Every 10 years</td><td>Smoke and CO alarms replaced — sealed units expire.</td></tr>
+  </table>
+</section>
+
+<div class="cta">
+  <h2>Need the hardware?</h2>
+  <p style="font-size:15px;margin:0 0 4px">White Works supplies the items on this checklist to
+  landlords and property managers across New Jersey and New York — 10-year sealed smoke and CO
+  alarms, fire extinguishers, window guards, self-closing door hardware, chains and peepholes.
+  We quote per building, not per piece, so you know what a whole property costs before you order.</p>
+  <a class="btn" href="https://wa.me/13476458900?text=I%20saw%20the%20NJ%20Compliance%20Pack%20and%20want%20a%20quote">Get a per-building quote</a>
+  <a class="btn ghost" href="mailto:orderswhiteworks@outlook.com?subject=NJ%20Compliance%20Pack%20-%20quote%20request">Email us</a>
+</div>
+
+<footer>
+  <p><b>White Works LLC</b> · Building safety and security hardware · Brooklyn, NY ·
+  orderswhiteworks@outlook.com</p>
+  <p>These materials are provided as templates for convenience and are not legal advice.
+  Requirements, fees and procedures vary by municipality and change over time. Confirm
+  specifics with your local enforcing agency, the NJ Department of Community Affairs, or your
+  attorney before relying on them.</p>
+</footer>
+
+</div>
+
+<script>
+function sync(){
+  const map = {i_name:['o_name','s_name'], i_phone:['o_phone','s_phone'],
+               i_addr:['o_addr','s_addr'], i_web:['o_web','s_web']};
+  Object.keys(map).forEach(src=>{
+    const v = document.getElementById(src).value || '\u00A0';
+    map[src].forEach(t => document.getElementById(t).textContent = v);
+  });
+}
+</script>
+</body>
+</html>
